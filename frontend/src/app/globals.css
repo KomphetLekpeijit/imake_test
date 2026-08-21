@@ -8,8 +8,8 @@
     --glass-border: rgba(180, 140, 100, 0.15);
   }
   .dark {
-    --glass-bg: rgba(31, 41, 55, 0.85);
-    --glass-border: rgba(75, 85, 99, 0.3);
+    --glass-bg: #141414;
+    --glass-border: #262626;
   }
 }
 
@@ -18,7 +18,8 @@ body {
 }
 
 .dark body {
-  @apply bg-gray-900 text-gray-100;
+  background-color: #000000;
+  color: #e5e5e5;
 }
 
 @layer components {
@@ -27,7 +28,8 @@ body {
   }
 
   .dark .glass-card {
-    @apply bg-gray-800/85 border-gray-700/40;
+    background-color: #141414;
+    border-color: #262626;
   }
 
   .glass-card:hover {
@@ -39,7 +41,8 @@ body {
   }
 
   .dark .glass-card-static {
-    @apply bg-gray-800/85 border-gray-700/40;
+    background-color: #141414;
+    border-color: #262626;
   }
 
   .btn-primary {
@@ -55,7 +58,12 @@ body {
   }
 
   .dark .btn-glass {
-    @apply bg-gray-800/60 text-gray-200 border-gray-700/40 hover:bg-gray-800/80;
+    background-color: #1a1a1a;
+    color: #e5e5e5;
+    border-color: #333333;
+  }
+  .dark .btn-glass:hover {
+    background-color: #262626;
   }
 
   .btn-green {
@@ -83,7 +91,16 @@ body {
   }
 
   .dark .input-field {
-    @apply bg-gray-800/70 border-gray-700/50 text-gray-100 placeholder-gray-500;
+    background-color: #1a1a1a;
+    border-color: #333333;
+    color: #e5e5e5;
+  }
+  .dark .input-field::placeholder {
+    color: #737373;
+  }
+  .dark .input-field:focus {
+    border-color: #d97706;
+    box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.2);
   }
 
   .select-field {
@@ -93,7 +110,9 @@ body {
   }
 
   .dark .select-field {
-    @apply bg-gray-800/70 border-gray-700/50 text-gray-100;
+    background-color: #1a1a1a;
+    border-color: #333333;
+    color: #e5e5e5;
   }
 
   .textarea-field {
@@ -103,7 +122,12 @@ body {
   }
 
   .dark .textarea-field {
-    @apply bg-gray-800/70 border-gray-700/50 text-gray-100 placeholder-gray-500;
+    background-color: #1a1a1a;
+    border-color: #333333;
+    color: #e5e5e5;
+  }
+  .dark .textarea-field::placeholder {
+    color: #737373;
   }
 
   .input-label {
@@ -111,7 +135,7 @@ body {
   }
 
   .dark .input-label {
-    @apply text-gray-300;
+    color: #a3a3a3;
   }
 
   .table-header {
@@ -119,7 +143,8 @@ body {
   }
 
   .dark .table-header {
-    @apply bg-gray-800 text-gray-300;
+    background-color: #1a1a1a;
+    color: #a3a3a3;
   }
 
   .heading-text {
@@ -127,7 +152,7 @@ body {
   }
 
   .dark .heading-text {
-    @apply text-gray-100;
+    color: #f5f5f5;
   }
 
   .sub-text {
@@ -135,6 +160,6 @@ body {
   }
 
   .dark .sub-text {
-    @apply text-gray-400;
+    color: #737373;
   }
 }
