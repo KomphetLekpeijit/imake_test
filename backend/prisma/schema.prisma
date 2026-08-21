@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id              String          @id @default(uuid())
+  name            String
+  description     String?         @db.Text
+  cronExpression  String          @map("cron_expression") @db.VarChar(100)
+  targetUrl       String          @map("target_url") @db.VarChar(500)
+  httpMethod      String          @default("POST") @map("http_method") @db.VarChar(10)
+  headers         Json?
+  payload         Json?
+  timeoutSeconds  Int             @default(30) @map("timeout_seconds")
+  maxRetries      Int             @default(3) @map("max_retries")
+  webhookUrl      String?         @map("webhook_url") @db.VarChar(500)
+  webhookType     String?         @map("webhook_type") @db.VarChar(20)
+  isActive        Boolean         @default(true) @map("is_active")
+  nextRunAt       DateTime?       @map("next_run_at")
+  createdAt       DateTime        @default(now()) @map("created_at")
+  updatedAt       DateTime        @updatedAt @map("updated_at")
+
+  executionLogs ExecutionLog[]
+
+  @@map("tasks")
+}
+
+model ExecutionLog {
+  id             String   @id @default(uuid())
+  taskId         String   @map("task_id")
+  triggerType    String   @map("trigger_type") @db.VarChar(20)
+  startedAt      DateTime @map("started_at")
+  finishedAt     DateTime? @map("finished_at")
+  durationMs     Int?     @map("duration_ms")
+  status         String   @db.VarChar(20)
+  retryCount     Int      @default(0) @map("retry_count")
+  httpStatusCode Int?     @map("http_status_code")
+  requestPayload Json?    @map("request_payload")
+  responseBody   String?  @map("response_body") @db.Text
+
+  task Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@map("execution_logs")
+}

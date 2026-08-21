@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: scheduler_mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: scheduler_db
+      MYSQL_USER: scheduler_user
+      MYSQL_PASSWORD: scheduler_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: scheduler_backend
+    ports:
+      - "3001:3001"
+    environment:
+      DATABASE_URL: mysql://scheduler_user:scheduler_password@mysql:3306/scheduler_db?charset=utf8mb4
+      WORKER_URL: http://worker:3002
+      PORT: 3001
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    container_name: scheduler_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:3001
+    depends_on:
+      - backend
+
+  worker:
+    build: ./worker
+    container_name: scheduler_worker
+    ports:
+      - "3002:3002"
+
+volumes:
+  mysql_data:
