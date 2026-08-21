@@ -6,6 +6,14 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
+  try {
+    const execSync = require('child_process').execSync;
+    execSync('npx prisma db push --accept-data-loss', { stdio: 'inherit' });
+    console.log('Database schema synced successfully');
+  } catch (e) {
+    console.error('Schema sync failed:', e);
+  }
+
   app.enableCors({
     origin: '*',
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
