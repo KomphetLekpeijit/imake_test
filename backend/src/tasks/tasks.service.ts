@@ -81,7 +81,9 @@ export class TasksService {
 
   private calculateNextRun(cronExpression: string): Date {
     try {
-      const job = new Cron(cronExpression);
+      const job = new Cron(cronExpression, {
+        timezone: 'Asia/Bangkok',
+      });
       const next = job.nextRun();
       if (!next) return new Date();
       return next;

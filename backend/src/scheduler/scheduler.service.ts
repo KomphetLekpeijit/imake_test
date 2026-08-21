@@ -58,7 +58,9 @@ export class SchedulerService implements OnModuleInit {
     }
 
     try {
-      const job = new Cron(cronExpression, async () => {
+      const job = new Cron(cronExpression, {
+        timezone: 'Asia/Bangkok',
+      }, async () => {
         await this.executeTask(taskId, 'scheduled');
       });
 
