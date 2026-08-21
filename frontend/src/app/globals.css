@@ -8,8 +8,8 @@
     --glass-border: rgba(180, 140, 100, 0.15);
   }
   .dark {
-    --glass-bg: rgba(28, 25, 23, 0.85);
-    --glass-border: rgba(180, 140, 100, 0.1);
+    --glass-bg: rgba(31, 41, 55, 0.85);
+    --glass-border: rgba(75, 85, 99, 0.3);
   }
 }
 
@@ -18,7 +18,7 @@ body {
 }
 
 .dark body {
-  @apply bg-gradient-to-br from-stone-950 via-amber-950/30 to-stone-950 text-stone-100;
+  @apply bg-gray-900 text-gray-100;
 }
 
 @layer components {
@@ -27,7 +27,7 @@ body {
   }
 
   .dark .glass-card {
-    @apply bg-stone-900/85 border-amber-800/20;
+    @apply bg-gray-800/85 border-gray-700/40;
   }
 
   .glass-card:hover {
@@ -39,7 +39,7 @@ body {
   }
 
   .dark .glass-card-static {
-    @apply bg-stone-900/85 border-amber-800/20;
+    @apply bg-gray-800/85 border-gray-700/40;
   }
 
   .btn-primary {
@@ -55,7 +55,7 @@ body {
   }
 
   .dark .btn-glass {
-    @apply bg-stone-800/60 text-stone-200 border-amber-800/20 hover:bg-stone-800/80;
+    @apply bg-gray-800/60 text-gray-200 border-gray-700/40 hover:bg-gray-800/80;
   }
 
   .btn-green {
@@ -83,7 +83,7 @@ body {
   }
 
   .dark .input-field {
-    @apply bg-stone-800/70 border-amber-800/30 text-stone-100 placeholder-stone-500;
+    @apply bg-gray-800/70 border-gray-700/50 text-gray-100 placeholder-gray-500;
   }
 
   .select-field {
@@ -93,7 +93,7 @@ body {
   }
 
   .dark .select-field {
-    @apply bg-stone-800/70 border-amber-800/30 text-stone-100;
+    @apply bg-gray-800/70 border-gray-700/50 text-gray-100;
   }
 
   .textarea-field {
@@ -103,7 +103,7 @@ body {
   }
 
   .dark .textarea-field {
-    @apply bg-stone-800/70 border-amber-800/30 text-stone-100 placeholder-stone-500;
+    @apply bg-gray-800/70 border-gray-700/50 text-gray-100 placeholder-gray-500;
   }
 
   .input-label {
@@ -111,7 +111,7 @@ body {
   }
 
   .dark .input-label {
-    @apply text-stone-300;
+    @apply text-gray-300;
   }
 
   .table-header {
@@ -119,7 +119,7 @@ body {
   }
 
   .dark .table-header {
-    @apply bg-amber-900/30 text-amber-300;
+    @apply bg-gray-800 text-gray-300;
   }
 
   .heading-text {
@@ -127,7 +127,7 @@ body {
   }
 
   .dark .heading-text {
-    @apply text-amber-200;
+    @apply text-gray-100;
   }
 
   .sub-text {
@@ -135,6 +135,6 @@ body {
   }
 
   .dark .sub-text {
-    @apply text-stone-400;
+    @apply text-gray-400;
   }
 }
