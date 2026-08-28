@@ -6,7 +6,7 @@ import { useI18n } from '@/lib/i18n-context';
 
 interface LogEntry {
   id: string;
-  task: { id: string; name: string };
+  task: { id: string; name: string } | null;
   triggerType: string;
   status: string;
   startedAt: string;
