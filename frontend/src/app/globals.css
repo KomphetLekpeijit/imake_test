@@ -18,7 +18,8 @@ body {
 }
 
 .dark body {
-  background-color: #000000;
+  background-color: #000000 !important;
+  background-image: none !important;
   color: #e5e5e5;
   box-shadow: none;
 }
@@ -26,6 +27,7 @@ body {
 .dark * {
   box-shadow: none !important;
   text-shadow: none !important;
+  background-image: none !important;
 }
 
 .dark .backdrop-blur-md,
