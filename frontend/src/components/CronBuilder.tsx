@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useRef, useCallback } from 'react';
+import { useState, useMemo, useRef, useCallback, useEffect } from 'react';
 import { CronConfig, parseCronToConfig, generateCron, humanizeCron } from '@/lib/cron-utils';
 import { useI18n } from '@/lib/i18n-context';
 
@@ -34,6 +34,10 @@ export default function CronBuilder({ value, onChange }: CronBuilderProps) {
   const { t } = useI18n();
 
   const [activeMode, setActiveMode] = useState<CronConfig['mode']>(() => parseCronToConfig(value).mode);
+
+  useEffect(() => {
+    setActiveMode(parseCronToConfig(value).mode);
+  }, [value]);
 
   const config = useMemo(() => {
     const parsed = parseCronToConfig(value);
